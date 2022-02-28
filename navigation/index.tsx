@@ -14,12 +14,13 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import Home from '../screens/Home/Home';
 import Bookmark from '../screens/Bookmark/Bookmark';
-import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import Notification from '../screens/Notification/Notiications';
 import Search from '../screens/Search/Search';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import AddProjectModal from '../screens/AddProjectModal/AddProjectModal';
+import { View } from '../components/Themed';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -42,8 +43,8 @@ function RootNavigator() {
     <Stack.Navigator>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-      <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+      <Stack.Group>
+        <Stack.Screen name="Create Project" component={AddProjectModal} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -59,41 +60,49 @@ function BottomTabNavigator() {
   const colorScheme = useColorScheme();
 
   return (
-    <BottomTab.Navigator
-      initialRouteName="Home"
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
-      }}>
-      <BottomTab.Screen
-        name="Home"
-        component={Home}
-        options={({ navigation }: RootTabScreenProps<'Home'>) => ({
-          title: 'My Feed',
-          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
-        })}
-      />
-      <BottomTab.Screen
-        name="Search"
-        component={Search}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="Bookmark"
-        component={Bookmark}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="bookmark" color={color} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="My Projects"
-        component={Notification}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="codesandbox" color={color} />,
-        }}
-      />
-    </BottomTab.Navigator>
+
+      <BottomTab.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          tabBarActiveTintColor: Colors[colorScheme].tint,
+          tabBarStyle: {
+            borderTopLeftRadius: 25,
+            borderTopRightRadius: 25,
+            paddingVertical: 10,
+            paddingBottom: 10,
+            height: 65
+          }
+        }}>
+        <BottomTab.Screen
+          name="Home"
+          component={Home}
+          options={({ navigation }: RootTabScreenProps<'Home'>) => ({
+            title: 'My Feed',
+            tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
+          })}
+        />
+        <BottomTab.Screen
+          name="Search"
+          component={Search}
+          options={{
+            tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
+          }}
+        />
+        <BottomTab.Screen
+          name="Bookmark"
+          component={Bookmark}
+          options={{
+            tabBarIcon: ({ color }) => <TabBarIcon name="bookmark" color={color} />,
+          }}
+        />
+        <BottomTab.Screen
+          name="My Projects"
+          component={Notification}
+          options={{
+            tabBarIcon: ({ color }) => <TabBarIcon name="codesandbox" color={color} />,
+          }}
+        />
+      </BottomTab.Navigator>
   );
 }
 
