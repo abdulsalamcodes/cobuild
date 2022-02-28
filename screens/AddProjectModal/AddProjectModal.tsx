@@ -1,12 +1,11 @@
-
+import React from 'react';
 import { Feather } from '@expo/vector-icons';
 import { useRef, useState } from 'react';
-import EditScreenInfo from '../../components/EditScreenInfo';
 import InputField from '../../components/InputField/InputField';
 import { Text, View, } from '../../components/Themed';
 import { color_grey, primary } from '../../constants/Colors';
 import { RootTabScreenProps } from '../../types';
-import { Button, ScrollView, TouchableOpacity } from 'react-native';
+import { Button, NativeSyntheticEvent, NativeTouchEvent, ScrollView, TouchableOpacity, } from 'react-native';
 import styles from './AddProjectModalStyle';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -15,7 +14,7 @@ export default function AddProjectModal({ navigation }: RootTabScreenProps<'Home
   const [contactType, setContactType] = useState('WhatsApp');
   const [showContactType, setShowContactType] = useState(false)
   const initialValues = {
-    title: 'Add Project',
+    title: '',
     github: '',
     previewLink: '',
     description: '',
@@ -31,10 +30,10 @@ export default function AddProjectModal({ navigation }: RootTabScreenProps<'Home
   const validateSchema = Yup.object().shape({
     title: Yup.string()
       .min(2, 'Too Short!')
-      .max(50, 'Too Long!')
+      .max(20, 'Too Long!')
       .required('Required'),
     description: Yup.string()
-      .min(2, 'Too Short!')
+      .min(10, 'Too Short!')
       .max(50, 'Too Long!')
       .required('Required'),
     github: Yup.string().url('Invalid url').required('Required'),
@@ -128,7 +127,7 @@ export default function AddProjectModal({ navigation }: RootTabScreenProps<'Home
               <Text style={styles.contactLabel}>Contact:</Text>
               <TouchableOpacity style={styles.selectButton} onPress={() => {
                 setShowContactType(!showContactType);
-                scrollViewRef.current.scrollToEnd({ animated: true });
+                scrollViewRef.current?.scrollToEnd({ animated: true });
               }}>
                 <Text>{contactType}</Text>
                 <Feather name='chevron-down' size={20} />
@@ -149,7 +148,7 @@ export default function AddProjectModal({ navigation }: RootTabScreenProps<'Home
             </View>
 
             <View style={styles.btnWrapper}>
-              <Button onPress={handleSubmit}
+              <Button onPress={handleSubmit as unknown as (ev: NativeSyntheticEvent<NativeTouchEvent>) => void}
                  color={primary}
                  accessibilityLabel="Learn more about this purple button"
                 title="Submit" />
