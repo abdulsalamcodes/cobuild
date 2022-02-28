@@ -6,9 +6,8 @@ import styles from './HomeStyles';
 import { Feather } from '@expo/vector-icons';
 import React from 'react';
 import { Pressable, Image, TouchableOpacity } from 'react-native';
-import { primary } from '../../constants/Colors';
+import { color_grey, primary } from '../../constants/Colors';
 import ProjectCard from '../../components/ProjectCard/ProjectCard';
-
 
 const TrendingScreen = () => (
   <View style={styles.tabItem} >
@@ -38,11 +37,11 @@ export default function Home({ navigation }: RootTabScreenProps<'Home'>) {
     <>
       <View style={styles.topHeader}>
         <View>
-          <Image style={styles.avatar} source={{
-            url: 'https://i.pinimg.com/564x/ae/ec/c2/aeecc22a67dac7987a80ac0724658493.jpg',
-          }} />
+          <Image style={styles.avatar} source={require('../../assets/images/avatar.jpeg')} />
         </View>
-        <TouchableOpacity style={styles.btn}><Text style={styles.btnText}>My Projects</Text></TouchableOpacity>
+        <TouchableOpacity>
+          <Feather name='bell' color={color_grey} size={25} />
+        </TouchableOpacity>
       </View>
       <Tab.Navigator
         screenOptions={{
@@ -57,7 +56,7 @@ export default function Home({ navigation }: RootTabScreenProps<'Home'>) {
           opacity: pressed ? 0.5 : 1,
           ...styles.plusIcon
         })}
-        onPress={() => navigation.navigate('Modal')}
+        onPress={() => navigation.navigate('Create Project')}
       >
         <Feather name='plus' color='#fff' size={35} />
       </Pressable>
