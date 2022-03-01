@@ -26,8 +26,7 @@ import ProjectDetail from '../screens/ProjectDetail/ProjectDetail';
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
     <NavigationContainer
-      linking={LinkingConfiguration}
-      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      linking={LinkingConfiguration}>
       <RootNavigator />
     </NavigationContainer>
   );
