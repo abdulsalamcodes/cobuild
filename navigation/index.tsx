@@ -21,12 +21,13 @@ import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../typ
 import LinkingConfiguration from './LinkingConfiguration';
 import AddProjectModal from '../screens/AddProjectModal/AddProjectModal';
 import { View } from '../components/Themed';
+import ProjectDetail from '../screens/ProjectDetail/ProjectDetail';
+import MyProjects from '../screens/MyProjects';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
     <NavigationContainer
-      linking={LinkingConfiguration}
-      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      linking={LinkingConfiguration}>
       <RootNavigator />
     </NavigationContainer>
   );
@@ -43,8 +44,12 @@ function RootNavigator() {
     <Stack.Navigator>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+      <Stack.Screen name="Notification" component={Notification} options={{ title: 'Notifications' }} />
       <Stack.Group>
         <Stack.Screen name="Create Project" component={AddProjectModal} />
+        <Stack.Screen name="Project Details"
+        options={({ route }) => ({ headerTitle: route.params.title, title: route.params.title })}
+        component={ProjectDetail} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -61,48 +66,48 @@ function BottomTabNavigator() {
 
   return (
 
-      <BottomTab.Navigator
-        initialRouteName="Home"
-        screenOptions={{
-          tabBarActiveTintColor: Colors[colorScheme].tint,
-          tabBarStyle: {
-            borderTopLeftRadius: 25,
-            borderTopRightRadius: 25,
-            paddingVertical: 10,
-            paddingBottom: 10,
-            height: 65
-          }
-        }}>
-        <BottomTab.Screen
-          name="Home"
-          component={Home}
-          options={({ navigation }: RootTabScreenProps<'Home'>) => ({
-            title: 'My Feed',
-            tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
-          })}
-        />
-        <BottomTab.Screen
-          name="Search"
-          component={Search}
-          options={{
-            tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
-          }}
-        />
-        <BottomTab.Screen
-          name="Bookmark"
-          component={Bookmark}
-          options={{
-            tabBarIcon: ({ color }) => <TabBarIcon name="bookmark" color={color} />,
-          }}
-        />
-        <BottomTab.Screen
-          name="My Projects"
-          component={Notification}
-          options={{
-            tabBarIcon: ({ color }) => <TabBarIcon name="codesandbox" color={color} />,
-          }}
-        />
-      </BottomTab.Navigator>
+    <BottomTab.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        tabBarActiveTintColor: Colors[colorScheme].tint,
+        tabBarStyle: {
+          borderTopLeftRadius: 25,
+          borderTopRightRadius: 25,
+          paddingVertical: 10,
+          paddingBottom: 10,
+          height: 65
+        }
+      }}>
+      <BottomTab.Screen
+        name="Home"
+        component={Home}
+        options={({ navigation }: RootTabScreenProps<'Home'>) => ({
+          title: 'My Feed',
+          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
+        })}
+      />
+      <BottomTab.Screen
+        name="Search"
+        component={Search}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Bookmark"
+        component={Bookmark}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="bookmark" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="My Projects"
+        component={MyProjects}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="codesandbox" color={color} />,
+        }}
+      />
+    </BottomTab.Navigator>
   );
 }
 

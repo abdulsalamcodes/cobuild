@@ -26,7 +26,7 @@ export default function AddProjectModal({ navigation }: RootTabScreenProps<'Home
   };
 
   const contactTypes = ['WhatsApp', 'Email', 'Twitter', 'LinkedIn'];
- 
+
   const validateSchema = Yup.object().shape({
     title: Yup.string()
       .min(2, 'Too Short!')
@@ -148,10 +148,11 @@ export default function AddProjectModal({ navigation }: RootTabScreenProps<'Home
             </View>
 
             <View style={styles.btnWrapper}>
-              <Button onPress={handleSubmit as unknown as (ev: NativeSyntheticEvent<NativeTouchEvent>) => void}
-                 color={primary}
-                 accessibilityLabel="Learn more about this purple button"
-                title="Submit" />
+              <TouchableOpacity style={styles.btn} onPress={handleSubmit as unknown as (ev: NativeSyntheticEvent<NativeTouchEvent>) => void}
+                accessibilityLabel="Learn more about this purple button"
+              >
+                <Text style={styles.btnText}>Submit</Text>
+              </TouchableOpacity>
             </View>
           </>
         }}

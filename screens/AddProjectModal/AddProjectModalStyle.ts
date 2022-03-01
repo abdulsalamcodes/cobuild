@@ -59,8 +59,19 @@ const styles = StyleSheet.create({
   },
   btnWrapper: {
     marginBottom: 30,
-    backgroundColor: primary
   },
+  
+  btn: {
+    backgroundColor: primary,
+    borderRadius: 10,
+    padding: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    color: "white"
+  },
+  btnText: {
+    color: "white",
+  }
 });
 
 export default styles;
