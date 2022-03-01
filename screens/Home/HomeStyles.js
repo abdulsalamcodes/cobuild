@@ -6,21 +6,20 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: '#EEEEEE'
+    backgroundColor: 'white'
   },
   title: {
     fontSize: 20,
     fontWeight: "bold",
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
+  list: {
+    padding: 16,
+    marginBottom: 40,
   },
   tabItem: {
     flex: 1,
     padding: 16,
-    backgroundColor: '#EEEEEE'
+    backgroundColor: 'white'
   },
   tabBar: {
     flexDirection: "row",

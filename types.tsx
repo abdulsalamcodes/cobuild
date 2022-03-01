@@ -18,6 +18,7 @@ export type RootStackParamList = {
   Modal: undefined;
   NotFound: undefined;
   'Create Project': undefined;
+  'Project Details': undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
@@ -36,4 +37,15 @@ export type RootTabParamList = {
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
   BottomTabScreenProps<RootTabParamList, Screen>,
   NativeStackScreenProps<RootStackParamList>
->;
+  >;
+
+export interface ProjectCardType {
+  id: number,
+  title: string,
+  github: string,
+  myLinkedIn: string,
+  myTwitter: string,
+  myEmail: string,
+  phone: string,
+  description: string,
+  }
