@@ -22,6 +22,7 @@ import LinkingConfiguration from './LinkingConfiguration';
 import AddProjectModal from '../screens/AddProjectModal/AddProjectModal';
 import { View } from '../components/Themed';
 import ProjectDetail from '../screens/ProjectDetail/ProjectDetail';
+import MyProjects from '../screens/MyProjects';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -43,6 +44,7 @@ function RootNavigator() {
     <Stack.Navigator>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+      <Stack.Screen name="Notification" component={Notification} options={{ title: 'Notifications' }} />
       <Stack.Group>
         <Stack.Screen name="Create Project" component={AddProjectModal} />
         <Stack.Screen name="Project Details"
@@ -100,7 +102,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="My Projects"
-        component={Notification}
+        component={MyProjects}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="codesandbox" color={color} />,
         }}

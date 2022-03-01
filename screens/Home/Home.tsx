@@ -44,7 +44,7 @@ export default function Home({ navigation }: RootTabScreenProps<'Home'>) {
         <View>
           <Image style={styles.avatar} source={require('../../assets/images/avatar.jpeg')} />
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Notification')}>
           <Feather name='bell' color={color_grey} size={25} />
         </TouchableOpacity>
       </View>
