@@ -16,12 +16,14 @@ declare global {
 export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   Modal: undefined;
+  Notification: undefined;
   NotFound: undefined;
   'Create Project': undefined;
   'SignIn': undefined;
   'SignUp': undefined;
   "Authentication": undefined;
   "ForgetPassword": undefined;
+  'Project Details': undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
@@ -33,7 +35,6 @@ export type RootTabParamList = {
   Home: undefined;
   Search: undefined;
   Bookmark: undefined;
-  Notification: undefined;
   "My Projects": undefined;
   "Authentication": undefined;
   "ForgetPassword": undefined;
@@ -44,4 +45,15 @@ export type RootTabParamList = {
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
   BottomTabScreenProps<RootTabParamList, Screen>,
   NativeStackScreenProps<RootStackParamList>
->;
+  >;
+
+export interface ProjectCardType {
+  id: number,
+  title: string,
+  github: string,
+  myLinkedIn: string,
+  myTwitter: string,
+  myEmail: string,
+  phone: string,
+  description: string,
+  }

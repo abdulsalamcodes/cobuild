@@ -36,7 +36,10 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     // }
   }
 
-  // {"confirmPassword": "password", "email": "usmanah9817@gmail.com", "name": "ahmad", "password": "password", "username": "usmahm"}
+
+  // const createUserProfile = async () => {
+  //   await auth().currentUser?.updateProfile({})
+  // }
 
   const signUpHandler = ({ email, password, name, username } : {email: string, password: string, name: string, username: string}) => {
     updateState({ loading: true });

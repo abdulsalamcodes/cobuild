@@ -5,35 +5,40 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import styles from './HomeStyles';
 import { Feather } from '@expo/vector-icons';
 import React from 'react';
-import { Pressable, Image, TouchableOpacity } from 'react-native';
+import { Pressable, Image, TouchableOpacity, FlatList } from 'react-native';
 import { useAuthContext } from '../../contexts/Auth/AuthContextProvider';
 import { color_grey, primary } from '../../constants/Colors';
 import ProjectCard from '../../components/ProjectCard/ProjectCard';
-
-const TrendingScreen = () => (
-  <View style={styles.tabItem} >
-    <ProjectCard />
-    <ProjectCard />
-    <ProjectCard />
-  </View>
-);
-
-const PopularScreen = () => (
-  <View style={styles.tabItem}>
-    <Text>Popular</Text>
-  </View>
-);
-const RecentScreen = () => (
-  <View style={styles.tabItem}>
-    <Text>Recent</Text>
-  </View>
-);
+import projects from '../../dummy/projects';
 
 
 
 export default function Home({ navigation }: RootTabScreenProps<'Home'>) {
   const Tab = createMaterialTopTabNavigator();
   const authContext = useAuthContext();
+
+  const TrendingScreen = () => {
+    const renderItem = ({ item }: any) => (
+      <ProjectCard detail={item} navigation={navigation} />
+    );
+    return <FlatList
+      data={projects}
+      style={styles.list}
+      renderItem={renderItem}
+      keyExtractor={item => item.id}
+    />
+  };
+  
+  const PopularScreen = () => (
+    <View style={styles.tabItem}>
+      <Text>Popular</Text>
+    </View>
+  );
+  const RecentScreen = () => (
+    <View style={styles.tabItem}>
+      <Text>Recent</Text>
+    </View>
+  );
 
   return (
     <>
@@ -44,7 +49,7 @@ export default function Home({ navigation }: RootTabScreenProps<'Home'>) {
         <TouchableOpacity onPress={() => authContext?.signOutHandler()}>
           <Text>Sign Out</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Notification')}>
           <Feather name='bell' color={color_grey} size={25} />
         </TouchableOpacity>
       </View>
