@@ -15,12 +15,18 @@ import useColorScheme from '../hooks/useColorScheme';
 import Home from '../screens/Home/Home';
 import Bookmark from '../screens/Bookmark/Bookmark';
 import NotFoundScreen from '../screens/NotFoundScreen';
+import SignUpScreen from '../screens/Auth/SignUpScreen/SignUpScreen';
+import SignInScreen from '../screens/Auth/SignInScreen/SignInScreen';
+import Authentication from '../screens/Auth/Authentication';
+import ForgetPasswordScreen from '../screens/Auth/ForgetPasswordScreen/ForgetPasswordScreen';
+import SplashScreen from '../screens/SplashScreen/SplashScreen';
 import Notification from '../screens/Notification/Notiications';
 import Search from '../screens/Search/Search';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import AddProjectModal from '../screens/AddProjectModal/AddProjectModal';
 import { View } from '../components/Themed';
+import { useAuthContext } from '../contexts/Auth/AuthContextProvider';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -39,13 +45,33 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
+  const authContext = useAuthContext();
+
+  if (!authContext) return null;
+  const { initializing, user } = authContext;
+
+  if (initializing) {
+    return <SplashScreen />;
+  }
+
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-      <Stack.Group>
-        <Stack.Screen name="Create Project" component={AddProjectModal} />
-      </Stack.Group>
+      {user ? (
+        <>
+          <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+          <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+          <Stack.Group>
+            <Stack.Screen name="Create Project" component={AddProjectModal} />
+          </Stack.Group>
+        </>
+      ) : (
+        <>
+          <Stack.Screen name="Authentication" component={Authentication} options={{ headerShown: false}} />
+          <Stack.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false}} />
+          <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false}} />
+          <Stack.Screen name="ForgetPassword" component={ForgetPasswordScreen} options={{ headerShown: false}} />
+        </>
+      )}
     </Stack.Navigator>
   );
 }

@@ -6,6 +6,7 @@ import styles from './HomeStyles';
 import { Feather } from '@expo/vector-icons';
 import React from 'react';
 import { Pressable, Image, TouchableOpacity } from 'react-native';
+import { useAuthContext } from '../../contexts/Auth/AuthContextProvider';
 import { color_grey, primary } from '../../constants/Colors';
 import ProjectCard from '../../components/ProjectCard/ProjectCard';
 
@@ -32,6 +33,7 @@ const RecentScreen = () => (
 
 export default function Home({ navigation }: RootTabScreenProps<'Home'>) {
   const Tab = createMaterialTopTabNavigator();
+  const authContext = useAuthContext();
 
   return (
     <>
@@ -39,6 +41,9 @@ export default function Home({ navigation }: RootTabScreenProps<'Home'>) {
         <View>
           <Image style={styles.avatar} source={require('../../assets/images/avatar.jpeg')} />
         </View>
+        <TouchableOpacity onPress={() => authContext?.signOutHandler()}>
+          <Text>Sign Out</Text>
+        </TouchableOpacity>
         <TouchableOpacity>
           <Feather name='bell' color={color_grey} size={25} />
         </TouchableOpacity>
