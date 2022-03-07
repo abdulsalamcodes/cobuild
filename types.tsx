@@ -19,6 +19,10 @@ export type RootStackParamList = {
   Notification: undefined;
   NotFound: undefined;
   'Create Project': undefined;
+  'SignIn': undefined;
+  'SignUp': undefined;
+  "Authentication": undefined;
+  "ForgetPassword": undefined;
   'Project Details': undefined;
 };
 
@@ -32,6 +36,10 @@ export type RootTabParamList = {
   Search: undefined;
   Bookmark: undefined;
   "My Projects": undefined;
+  "Authentication": undefined;
+  "ForgetPassword": undefined;
+  'SignIn': undefined;
+  'SignUp': undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<

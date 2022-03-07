@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "991351234556",
+    "project_id": "cobuild-8d8a4",
+    "storage_bucket": "cobuild-8d8a4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:991351234556:android:fb01655da326b3038bdc79",
+        "android_client_info": {
+          "package_name": "com.cobuild"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "991351234556-ee8q4vjikdflutd5h1a5p1ms5g4r3g50.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cobuild",
+            "certificate_hash": "4f6c577632d91647537018a243b97ed294474901"
+          }
+        },
+        {
+          "client_id": "991351234556-tqjn87dkmbvobrp3qerso6cvj620e0fr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMj8ZpaT_x0o9wsNwz4CiOCMwduxEnZtE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "991351234556-tqjn87dkmbvobrp3qerso6cvj620e0fr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
